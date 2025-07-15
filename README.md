@@ -3,7 +3,7 @@ This repository contains the Python-based machine learning model developed as pa
 
 The model, built using the XGBoost algorithm, was trained on real-world clinical data from hospitalized patients to detect wrong blood in tube errors (WBIT), including:
 
-- WBIT erros: confirmed errors (25%) and randomly simulated sample reorderings (25%)
+- WBIT: confirmed errors (25%) and randomly simulated sample reorderings (25%)
 
 - Properly identified control samples: 50%
 
