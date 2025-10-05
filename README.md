@@ -1,20 +1,61 @@
-This repository contains the Python-based machine learning model developed as part of the study titled:
-"Development and Validation of a Machine Learning Model for Accurate Detection of Wrong Blood in Tube Errors in Hospitalized Patients."
+**1.	Overview**
 
-The model, built using the XGBoost algorithm, was trained on real-world clinical data from hospitalized patients to detect wrong blood in tube errors (WBIT), including:
+missedSampleLib is a Python-based machine learning package developed for the automated detection of wrong blood in tube (WBIT) errors in hospitalized patients.
+The model was built using the XGBoost algorithm and trained on real-world clinical data. It operates on a vector containing the normalized variation of multiple laboratory parameters relative to the patient’s previous sample (when collected within the preceding five days).
 
-- WBIT: confirmed errors (25%) and randomly simulated sample reorderings (25%)
+The training dataset consisted of 50% correctly identified samples and 50% WBIT cases, the latter including 25% confirmed errors and 25% simulated sample reorderings.
+The model was validated in two independent external cohorts, demonstrating excellent discrimination, sound calibration, and robust generalizability across laboratories.
 
-- Properly identified control samples: 50%
+**2.	Model description**
 
-This package was specifically designed for integration into a Clinical Decision Support System (CDS), with the goal of automating the detection of analytical inconsistencies and enhancing patient safety within routine clinical workflows.
+The model functions as a plug-and-play module designed for seamless integration into Clinical Decision Support (CDS) and Laboratory Information Systems (LIS).
+It outputs a probability score (0–1) representing the likelihood of a WBIT event, based on a vector of normalized rate-of-change (NRC) values derived from standard hematology and biochemistry parameters.
 
-Repository contents:
+By default, predictions are recalibrated to a 5% prevalence, ensuring interpretability even for rare events.
+This setting can be customized through the parameter pi_target, enabling adjustment to alternative prevalence levels (for example, 1% or 2%) to reflect local epidemiology.
 
-- Training dataset
+**3.	Key features**
 
-- Script to train the model
+•	Validated in two independent external cohorts
 
-- Brief documentation for implementation
+•	Plug-and-play integration with existing LIS or CDS environments
 
-This repository is part of the technical supplementary material associated with the manuscript and is provided to support transparency, reproducibility, and practical deployment.
+•	Automatic prevalence recalibration via pi_target
+
+•	Compatible with real-time deployment for error detection and reporting
+
+•	Transparent and reproducible: includes model weights, documentation, and training scripts
+
+**4.	Repository contents**
+
+•	train_model.py — script for model retraining or fine-tuning
+
+•	model.pkl — pre-trained XGBoost model ready for deployment
+
+•	example_input.csv — sample input data with normalized features
+
+•	README.md — documentation for implementation and reproducibility
+
+**5.	Input format**
+
+The model takes as input a vector containing the normalized variation of the following laboratory parameters, in the specified order:
+
+Mean corpuscular volume (MCV), mean corpuscular hemoglobin (MCH), mean corpuscular hemoglobin concentration (MCHC), red cell distribution width (RDW), mean platelet volume (MPV), hemoglobin (HGB), chloride (Cl⁻), hematocrit (Ht), potassium (K⁺), creatinine (Cr), platelets (PLT), lymphocytes (LYMPH), eosinophils (EO), red blood cells (RBC), sodium (Na⁺), and basophils (BASO).
+
+It is recommended to first determine the optimal prediction cutoff, adjusting the model according to the true WBIT prevalence observed in the laboratory.
+If prevalence is initially unknown, the default calibration at 5% can be used, and the cutoff can later be recalculated once the true prevalence becomes available.
+
+**6.	Interpretation**
+
+•	The predicted probability represents the model-estimated likelihood of a WBIT event.
+
+•	The default 5% calibration provides balanced interpretability for hospital datasets.
+
+•	Adjusting the pi_target parameter allows alignment with different real-world prevalence levels.
+
+**7.	Citation**
+
+This package accompanies the study: “*Development and Validation of a Machine Learning Model for Accurate Detection of Wrong Blood in Tube Errors in Hospitalized Patients.*”
+
+
+<img width="425" height="705" alt="image" src="https://github.com/user-attachments/assets/421272c3-fe73-4eea-9e74-dafa458e9e40" />
