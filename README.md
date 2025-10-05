@@ -1,4 +1,4 @@
-**1.	Overview**
+## **1.	Overview**
 
 missedSampleLib is a Python-based machine learning package developed for the automated detection of wrong blood in tube (WBIT) errors in hospitalized patients.
 The model was built using the XGBoost algorithm and trained on real-world clinical data. It operates on a vector containing the normalized variation of multiple laboratory parameters relative to the patient’s previous sample (when collected within the preceding five days).
@@ -6,15 +6,15 @@ The model was built using the XGBoost algorithm and trained on real-world clinic
 The training dataset consisted of 50% correctly identified samples and 50% WBIT cases, the latter including 25% confirmed errors and 25% simulated sample reorderings.
 The model was validated in two independent external cohorts, demonstrating excellent discrimination, sound calibration, and robust generalizability across laboratories.
 
-**2.	Model description**
+## **2.	Model description**
 
-The model functions as a plug-and-play module designed for seamless integration into Clinical Decision Support (CDS) and Laboratory Information Systems (LIS).
+The model functions as a plug-and-play module designed for seamless integration into Clinical Decision Support System (CDSS) and Laboratory Information Systems (LIS).
 It outputs a probability score (0–1) representing the likelihood of a WBIT event, based on a vector of normalized rate-of-change (NRC) values derived from standard hematology and biochemistry parameters.
 
 By default, predictions are recalibrated to a 5% prevalence, ensuring interpretability even for rare events.
 This setting can be customized through the parameter pi_target, enabling adjustment to alternative prevalence levels (for example, 1% or 2%) to reflect local epidemiology.
 
-**3.	Key features**
+## **3.	Key features**
 
 •	Validated in two independent external cohorts
 
@@ -26,7 +26,7 @@ This setting can be customized through the parameter pi_target, enabling adjustm
 
 •	Transparent and reproducible: includes model weights, documentation, and training scripts
 
-**4.	Repository contents**
+## **4.	Repository contents**
 
 •	train_model.py — script for model retraining or fine-tuning
 
@@ -36,7 +36,7 @@ This setting can be customized through the parameter pi_target, enabling adjustm
 
 •	README.md — documentation for implementation and reproducibility
 
-**5.	Input format**
+## **5.	Input format**
 
 The model takes as input a vector containing the normalized variation of the following laboratory parameters, in the specified order:
 
@@ -45,7 +45,7 @@ Mean corpuscular volume (MCV), mean corpuscular hemoglobin (MCH), mean corpuscul
 It is recommended to first determine the optimal prediction cutoff, adjusting the model according to the true WBIT prevalence observed in the laboratory.
 If prevalence is initially unknown, the default calibration at 5% can be used, and the cutoff can later be recalculated once the true prevalence becomes available.
 
-**6.	Interpretation**
+## **6.	Interpretation**
 
 •	The predicted probability represents the model-estimated likelihood of a WBIT event.
 
@@ -53,9 +53,10 @@ If prevalence is initially unknown, the default calibration at 5% can be used, a
 
 •	Adjusting the pi_target parameter allows alignment with different real-world prevalence levels.
 
-**7.	Citation**
+## **7.	Citation**
 
 This package accompanies the study: “*Development and Validation of a Machine Learning Model for Accurate Detection of Wrong Blood in Tube Errors in Hospitalized Patients.*”
 
 
 <img width="425" height="705" alt="image" src="https://github.com/user-attachments/assets/421272c3-fe73-4eea-9e74-dafa458e9e40" />
+
