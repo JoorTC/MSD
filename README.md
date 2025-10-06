@@ -1,0 +1,6 @@
+missedSampleLib is a Python-based machine learning model developed as part of the study “Development and Validation of a CDS-Based Machine Learning Model for Accurate Detection of Wrong Blood in Tube (WBIT) Errors in Hospitalized Patients.”
+It enables the automated detection of WBIT events in hospitalized patients. Built with XGBoost and trained on real-world data (50% correct samples, 25% confirmed WBIT, and 25% simulated reorderings), the model showed excellent performance in two independent external validations.
+Input: Normalized variation of analytical parameters (relative to a previous sample within a 5-day window), in the following order:
+MCV, MCH, MCHC, RDW, MPV, HGB, Cl⁻, Ht, K⁺, Cr, PLT, LYMPH, EO, RBC, Na⁺, BASO.
+Output: Probability (0–1) of a WBIT event, recalibrated by default to 5% prevalence, adjustable via pi_target for local epidemiology.
+Integrates seamlessly into CDSS/LIS environments for real-time automated error detection.
