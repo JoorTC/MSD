@@ -28,13 +28,17 @@ This setting can be customized through the parameter pi_target, enabling adjustm
 
 ## **4.	Repository contents**
 
-•	train_model.py — script for model retraining or fine-tuning
+•	 DataProcessor.py — handles data import, preprocessing, and normalization. Generates the input feature matrix from raw analytical data.
 
-•	model.pkl — pre-trained XGBoost model ready for deployment
+•	ModelTrainer.py — defines the training pipeline, including cross-validation, hyperparameter tuning (*GridSearchCV*), and performance evaluation (AUC, ROC).
 
-•	example_input.csv — sample input data with normalized features
+•	OnTheFlyCalibrator.py — implements the in-the-large calibration module (adjustment of model intercepts). This allows real-time recalibration of predicted probabilities according to local prevalence without retraining the model.
 
-•	README.md — documentation for implementation and reproducibility
+•	utils.py — contains auxiliary functions (parameter grids, metric calculations, etc.) used across the project.
+
+•	train_set.csv — example training dataset used to fit the model. It includes normalized laboratory parameter variations and the binary outcome (WBIT vs. correct).
+
+•	init.py — initializes the package, enabling direct import of its modules.
 
 ## **5.	Input format**
 
@@ -56,7 +60,3 @@ If prevalence is initially unknown, the default calibration at 5% can be used, a
 ## **7.	Citation**
 
 This package accompanies the study: “*Development and Validation of a Machine Learning Model for Accurate Detection of Wrong Blood in Tube Errors in Hospitalized Patients.*”
-
-
-
-<img width="425" height="705" alt="image" src="https://github.com/user-attachments/assets/041f9ac3-b352-4471-8260-abc768621f38" />
